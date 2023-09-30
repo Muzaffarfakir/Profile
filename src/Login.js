@@ -13,7 +13,7 @@ function Login() {
     let [_, setCookies] = useCookies(["access_token"])
     let nav=useNavigate()
     function send() {
-        axios.post("http://localhost:8000/devLogData", { name, pass }).then((res) => {
+        axios.post("https://profile-bcak.onrender.com/devLogData", { name, pass }).then((res) => {
             console.log(res)
             if (res.data.mess === "exist") {
                 setCookies(res.data.token);
