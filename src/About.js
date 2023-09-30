@@ -13,7 +13,7 @@ function About() {
     let [seen, setseen] = useState(false)
 
     function infi() {
-        fetch('http://localhost:8000/').then((res) => res.json()).then((data) => {
+        fetch('https://profile-bcak.onrender.com/').then((res) => res.json()).then((data) => {
             Setdata(data)
         }
         )
