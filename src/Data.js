@@ -17,7 +17,7 @@ function Data() {
 
         axios({
             method: "post",
-            url: "http://localhost:8000/projectDataImg",
+            url: "https://profile-bcak.onrender.com/projectDataImg",
             data: data,
             config: {
                 headers: {
@@ -38,7 +38,7 @@ function Data() {
             alert("You Forget Something !!!")
         }
         else {
-            axios.post("http://localhost:8000/projectData", { text, title, repo })
+            axios.post("https://profile-bcak.onrender.com/projectData", { text, title, repo })
             nav('/about')
         }
 
