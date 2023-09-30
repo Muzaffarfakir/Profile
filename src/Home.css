@@ -1,0 +1,28 @@
+img {
+    border: 1px;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+#body{
+    background-color: black;
+    margin-top: 0px;
+}
+.f {
+    background-color: black;
+    position: fixed;
+    top: 95%;
+    width: 100%;
+    color: white;
+    text-align: center;
+
+
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
