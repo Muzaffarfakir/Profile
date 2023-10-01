@@ -19,7 +19,7 @@ function Home() {
         nav("/About");
     }
        function con(){
-        nav("/Contact");
+        nav("/Conatct");
     }
 
 
