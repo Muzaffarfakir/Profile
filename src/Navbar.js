@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, BrowserRouter, Link } from "react-router-dom"
+import { Route, Routes, BrowserRouter, Link ,HashRouter} from "react-router-dom"
 import Home from "./Home";
 import Contact from "./Contact";
 import About from "./About";
@@ -11,7 +11,7 @@ function Navbar() {
     return (
         <>
 
-            <BrowserRouter>
+            <HashRouter>
         
                 <nav>
                     <ul>
@@ -39,7 +39,7 @@ function Navbar() {
                         path="/AddProject" element={<Data />}
                     />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
 
         </>
     )
