@@ -8,11 +8,18 @@ let port = 8000;
 let jwt = require("jsonwebtoken");
 let mongoose = require("mongoose");
 let multer = require("multer");
+let cloud = require("cloudinary").v2;
+
 /////////////////////midleawres /////////
 app.use(cors());
 app.use(express.json())
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,"upload")))
+cloud.config({
+    cloud_name: 'dm0thlxai',
+    api_key: '583765424425853',
+    api_secret: 'brfFu8p3eAEMmLWOaMcUxtyL96s'
+});
 /////////////////////setup of multer /////////
 let storage = multer.diskStorage({
     destination: "upload/",
@@ -57,22 +64,25 @@ app.post("/projectDataImg", upload.single('imgg'), (req, res) => {
    img=req.file.filename
    
 })
-app.post("/projectData",  (req, res) => {
-    console.log(req.body);
-    let {text,title,repo}=req.body;
-    let url=req.protocol+"://"+req.get("host");
-    let data=new d({
-        text:text,
-        title:title,
-        repo:repo,
-        img:url+"/"+img,
-        date:Date.now()
-        
+app.post("/projectData", (req, res) => {
+    cloud.uploader.upload(img).then((d) => {
+        console.log(d)
 
+        let { text, title, repo } = req.body;
+        let data = new d({
+            text: text,
+            title: title,
+            repo: repo,
+            img: d.secure_url,
+            date: Date.now()
+
+
+        });
+
+
+        data.save();
     });
-    data.save();
-
-});
+    });
 app.get('/',async(req,res)=>{
     let data=await d.find({});
     res.send(data)
