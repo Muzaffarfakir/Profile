@@ -65,15 +65,15 @@ app.post("/projectDataImg", upload.single('imgg'), (req, res) => {
    
 })
 app.post("/projectData", (req, res) => {
-    cloud.uploader.upload(img).then((d) => {
-        console.log(d)
+    cloud.uploader.upload(img).then((da) => {
+        console.log(da)
 
         let { text, title, repo } = req.body;
         let data = new d({
             text: text,
             title: title,
             repo: repo,
-            img: d.secure_url,
+            img: da.secure_url,
             date: Date.now()
 
 
