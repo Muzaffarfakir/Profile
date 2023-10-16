@@ -61,27 +61,35 @@ let d = new mongoose.model("datasc", dataSc);
 ////////////Img /////////////////////
 let img;
 app.post("/projectDataImg", upload.single('imgg'), (req, res) => {
-   img=req.file.filename
+   img=req.file.path;
    
 })
-app.post("/projectData", (req, res) => {
-    cloud.uploader.upload(img).then((da) => {
-        console.log(da)
-
-        let { text, title, repo } = req.body;
-        let data = new d({
-            text: text,
-            title: title,
-            repo: repo,
-            img: da.secure_url,
-            date: Date.now()
+app.post("/projectData", async(req, res) => {
+    try {
+        let da = await cloud.uploader.upload(img).then((r) => {
+            console.log(r);
 
 
-        });
 
 
-        data.save();
-    });
+            let { text, title, repo } = req.body;
+            let data = new d({
+                text: text,
+                title: title,
+                repo: repo,
+                img: r.secure_url,
+                date: Date.now()
+
+
+            });
+            data.save();
+        })
+
+
+    } catch (er) {
+        console.log(er)
+
+    }
     });
 app.get('/',async(req,res)=>{
     let data=await d.find({});
